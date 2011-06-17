@@ -67,7 +67,7 @@
                     no      Don't add to autocomplete dictionary
             -->    
 
-              <keywords id="Keywords" color="#881350" useforautocomplete="yes" casesensitive="no"> 
+              <keywords id="Keywords" color="#FF5600" useforautocomplete="yes" casesensitive="no"> 
             	<!-- STUDIO added case insensitive -->
 				
 				<!-- Conditionals -->
@@ -113,24 +113,35 @@
 				<string>off</string>
 				<string>in</string>
 				
+				<!-- Class and inheritance -->
+				<string>class</string>
+				<string>extends</string>
+				<string>super</string>
+							
             </keywords>
-    
-    
-    
-            <state id="Function" color="#4262dc" font-weight="bold">
-                <begin><regex>(?:[\(][\w\s\.\,\$]*[\)][\s])?[-=]></regex></begin>
+     		<state id="Operators" color="#FF5600">
+                <begin><regex>(?:=!|==!|!|==|===|=|\-=|\+=|\+|\-|\*|\/|\->)</regex></begin>
+                <end><regex>\s</regex></end>
+            </state>
+            
+            <state id="Function" color="#21439C" font-weight="bold">
+                <begin><regex>(?:[\(][\w\s\.\,\$]*[\)][\s])></regex></begin>
                 <end><regex>[\s]</regex></end>
 				
-                <state id="Arguments" color="#400080" font-weight="normal">
+                <state id="Arguments" color="#0076AD" font-weight="normal">
                 	<begin><regex>\(</regex></begin>
                 	<end><regex>\)</regex></end>
                 </state>
             </state>
 
 			
-            <state id="Property" color="#400080" font-weight="bold">
-                <begin><regex>[^\n\r][\w]*?[\.]*?\w*\s*[\+\-\*\/]?[=:]</regex></begin>
-                <end><regex>\s</regex></end>
+            <state id="Property" color="#21439C" font-weight="bold">
+                <begin><regex>[^\n\r\[\{][\w]*?[\.]*?\w*\s*[\+\-\*\/]?[=:]</regex></begin>
+                <end><regex>\s?</regex></end>
+                <state id="Arguments" color="#0076AD" font-weight="normal">
+                	<begin><regex>\s?\(\w*</regex></begin>
+                	<end><regex>\)</regex></end>
+                </state>
             </state>
     
     
@@ -160,7 +171,7 @@
             
             
             
-            <state id="String" color="#760f15">
+            <state id="String" color="#00A33F">
                 <begin><regex>"</regex></begin>
                 <end><regex>(((?&lt;!\\)(\\\\)*)|^)"</regex></end>
                 
@@ -170,7 +181,7 @@
                 </state>
             </state>
             
-            <state id="Single String" color="#760f15">
+            <state id="Single String" color="#00A33F">
                 <begin><regex>'</regex></begin>
                 <end><regex>(((?&lt;!\\)(\\\\)*)|^)'</regex></end>
                 
@@ -207,11 +218,6 @@
                 </state>
                 
             </state>
-
-
-
-        </default>
-        
+        </default>        
     </states>
-
 </syntax>
