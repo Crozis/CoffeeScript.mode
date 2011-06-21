@@ -67,9 +67,7 @@
                     no      Don't add to autocomplete dictionary
             -->    
 
-              <keywords id="Keywords" color="#FF5600" useforautocomplete="yes" casesensitive="no"> 
-            	<!-- STUDIO added case insensitive -->
-				
+              <keywords id="Keywords" color="#16fb00" useforautocomplete="yes" casesensitive="no">				
 				<!-- Conditionals -->
                 <string>if</string>
                 <string>unless</string>
@@ -97,6 +95,7 @@
                 <string>try</string>
                 <string>catch</string>
 				<string>throw</string>
+				<string>finally</string>
 				
 				<!-- Operators and Aliases -->
 				<string>is</string>
@@ -116,53 +115,48 @@
 				<!-- Class and inheritance -->
 				<string>class</string>
 				<string>extends</string>
-				<string>super</string>
-							
+				<string>super</string>		
             </keywords>
-     		<state id="Operators" color="#FF5600">
-                <begin><regex>(?:=!|==!|!|==|===|=|\-=|\+=|\+|\-|\*|\/|\->)</regex></begin>
-                <end><regex>\s</regex></end>
-            </state>
-            
-            <state id="Function" color="#21439C" font-weight="bold">
-                <begin><regex>(?:[\(][\w\s\.\,\$]*[\)][\s])></regex></begin>
-                <end><regex>[\s]</regex></end>
-				
-                <state id="Arguments" color="#0076AD" font-weight="normal">
-                	<begin><regex>\(</regex></begin>
-                	<end><regex>\)</regex></end>
-                </state>
-            </state>
 
+			<!-- <state id="Variable" color="#cb7bff">
+                <begin><regex>(?:^[\t\s]*@[a-zA-Z]*)</regex></begin>
+                <end><regex>[\s\.]</regex></end>
+                <state id="Arguments" color="#0076AD" font-weight="normal">
+                	<begin><regex>[\(\[]\w*[\)\]]</regex></begin>
+                	<end><regex>\s</regex></end>
+                </state>	
+            </state>-->
 			
-            <state id="Property" color="#21439C" font-weight="bold">
-                <begin><regex>[^\n\r\[\{][\w]*?[\.]*?\w*\s*[\+\-\*\/]?[=:]</regex></begin>
+            <state id="Functions" color="#ff54fb">
+                <begin><regex>^[^\n\r\[\]\(\)\{\}][\t\w\[\]\@\:]*\.?\w*\s*[\+\-\*\/]?[=:]</regex></begin>
                 <end><regex>\s?</regex></end>
                 <state id="Arguments" color="#0076AD" font-weight="normal">
                 	<begin><regex>\s?\(\w*</regex></begin>
                 	<end><regex>\)</regex></end>
                 </state>
             </state>
-    
-    
-<!--            <keywords id="Numbers" color="#00f" useforautocomplete="no">
-        				<regex>(?&lt;=[^\w\d]|^)(((([0-9]+\.[0-9]*)|(\.[0-9]+))([eE][+\-]?[0-9]+)?[fFlL]?)|((([1-9][0-9]*)|0[0-7]*|(0[xX][0-9a-fA-F]+))(([uU][lL]?)|([lL][uU]?))?))(?=[^\w\d]|$)</regex>
-            </keywords> -->
+    		<keywords id="Numbers" color="#009919" useforautocomplete="no">
+				<regex>(?&lt;=[^[A-Za-z0-9]]|^)((([0-9]+\.[0-9]*)|(\.[0-9]+)([eE][+\-]?[0-9]+)?[fFlL]?)|((([1-9][0-9]*)|0[0-7]*|(0[xX][0-9a-fA-F]))(([uU][lL]?)|([lL][uU]?))?))(?=[^[A-Za-z0-9]]|$)</regex>
+            </keywords>
+            
+            <keywords id="Operators" color="#16fb00" useforautocomplete="no">
+				<regex>([\+\-\*\\\=\|!=|==|===|=|\-=|\+=|\+|\-|\*|\/|\->|\=>|\:\&lt;\&gt;])</regex>
+            </keywords>
             
             <keywords id="Characters" color="#00f" useforautocomplete="no">
-        				<regex>('.')</regex>
+        		<regex>('.')</regex>
             </keywords>
     
     
     
     
     
-            <state id="Comment" color="#236E25" font-style="italic">
+            <state id="Comment" color="#998" font-style="italic">
                 <begin><regex>###</regex></begin>
                 <end><regex>###</regex></end>
             </state>
             
-            <state id="Single Comment" color="#236E25" font-style="italic">
+            <state id="Single Comment" color="#998" font-style="italic">
                 <begin><regex>#</regex></begin>
                 <end><regex>[\n\r]</regex></end>
             </state>
@@ -171,21 +165,21 @@
             
             
             
-            <state id="String" color="#00A33F">
+            <state id="String" color="#A535AE">
                 <begin><regex>"</regex></begin>
                 <end><regex>(((?&lt;!\\)(\\\\)*)|^)"</regex></end>
                 
-                <state id="Interpolated Values" color="#b9302e">
+                <state id="Interpolated Values" color="#00b0ff">
                 	<begin><regex>#{</regex></begin>
                 	<end><regex>}</regex></end>	
                 </state>
             </state>
             
-            <state id="Single String" color="#00A33F">
+            <state id="Single String" color="#A535AE">
                 <begin><regex>'</regex></begin>
                 <end><regex>(((?&lt;!\\)(\\\\)*)|^)'</regex></end>
                 
-                <state id="Interpolated Values" color="#b9302e">
+                <state id="Interpolated Values" color="#00b0ff">
                 	<begin><regex>#{</regex></begin>
                 	<end><regex>}</regex></end>	
                 </state>
@@ -193,8 +187,8 @@
             
             
             <state id="RegularExpression" color="#760f15" font-style="italic">
-                <begin><regex>/</regex></begin>
-                <end><regex>/[imgy]{0,4}</regex></end>
+                <begin><regex>///</regex></begin>
+                <end><regex>///</regex></end>
             </state>
             
             
